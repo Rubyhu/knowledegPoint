@@ -50,7 +50,7 @@ CSS选择器的匹配是从右向左进行的，这一策略导致了不同种�
 ##3、使用无阻塞下载 javascript 的方法，即在页面加载完成后才加载 Javascript 代码。
 以下有几种无阻塞下载方法：
 3.1使用<script>的 defer 属性
-<script src="file.js" defer></script>复制代码
+<script src="file.js" defer></script>
 3.2使用动态创建的<script>元素来下载并执行代码
 3.3使用 XHR 对象下载 javascript代码并注入页面中
 ##4.将经常使用的全局变量引用储存在一个局部变量里。
@@ -146,52 +146,44 @@ const parent = document.getElementById('parent'); parent.addEventListener('click
 JavaScript 是单线程的，因此 JavaScript 在执行复杂计算的时候很可能会阻塞线程，导致页面假死。但 Web Worker 的出现，以另外一种方式给了我们多线程的能力，可以将复杂计算放在 worker 中进行，当计算完成后，以postMessage的形式将结果传回来。
 对于单个函数，因为 Web Worker 接受一个脚本的 url 作为参数，使用 URL.createObjectURL 方法，我们可以将一个函数的内容转换为 url，利用它创建一个 worker。
 
-
+
 var workerContent = `
-
+
  self.onmessage = function(evt){ 
      
-
+
 // ... 
 
-
+
 // 在这里进行复杂计算
 
-
+
  var result = complexFunc(); 
  
-
+
 // 将结果传回 self.postMessage(result); };` 
 
-
+
 // 得到 url 
 
-
+
 var blob = new Blob([workerContent]);
 
-
+
  var url = window.URL.createObjectURL(blob);
  
-
+
  // 创建 worker var worker = new Worker(url);
  
-
 
 
 ##10.对高频触发的事件进行节流或消抖
 
-
 函数防抖（debounce）：当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。
 将几次操作合并为一此操作进行。原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发。
 
-
-
 函数节流（throttle）：当持续触发事件时，保证一定时间段内只调用一次事件处理函数。
 使得一定时间内只触发一次函数。原理是通过判断是否到达一定时间来触发函数。
-
-
-
-
 
 区别： 函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而函数防抖只是在最后一次事件后才触发一次函数。 比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用节流技术来实现。
 
