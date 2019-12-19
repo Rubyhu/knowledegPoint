@@ -62,117 +62,84 @@ javascript中，主要分为字面量、局部变量、数组元素和对象这�
 
 
 ##7.减少重绘和重排，批量修改样式时，“离线”操作 DOM 树，使用缓存，并减少访问布局信息的次数。
+
 减少“重绘”和“重排”
 
-
 1、使元素脱离文档流
+
 2、对其应用多次改变
+
 3、把元素带回文档中
 
 // 第一种方式：隐藏元素，应用修改，重新显示let ul = document.getElementById('nyList');
 
-
 ul.style.display = 'none';// 向ul中添加附加数据
 
-
 appendDataToElement(ul, data);
 
-
 ul.style.display = 'block';
 
-
 // 第二种方式：使用文档片段（document fragment）在当前DOM之外构建一个子树，再把它拷贝到文档(推荐)let 
 
-
 fragment = document.createDocumentFragment();// 向fragment中添加附加数据
 
-
 appendDataToElement(ul, data);document.getElementById('myList').appendChild(fragment);
 
-
 // 第三种方式：将原始元素拷贝到一个脱离文档的节点中，修改副本，完成后再替换原始元素
 
-
 let old = document.getElementById('myList');let clone = old.cloneNode(true);// 向clone中添加附加数据
 
-
 appendDataToElement(ul, data);
 
-
 old.parentNode.replaceChild(clone, old);
 
 
 ##8.使用事件委托减少事件处理器的数量
-
-
 事件委托就是将目标节点的事件移到父节点来处理，由于浏览器冒泡的特点，当目标节点触发了该事件的时候，父节点也会触发该事件。因此，由父节点来负责监听和处理该事件。
 
-
 function handleClick(target) { 
     
-
 // 点击列表项的处理事件 
 
-
 }
 
-
  function delegate (e) { 
      
-
 // 判断目标对象是否为列表项 
 
-
 if (e.target.nodeName === 'LI') { 
     
-
 handleClick(e.target); }
 
-
  } 
  
-
 const parent = document.getElementById('parent'); parent.addEventListener('click', delegate);
-
-
-
-
 
 
 
 ##9.使用 Web Worker 来处理复杂的计算
-
-
 JavaScript 是单线程的，因此 JavaScript 在执行复杂计算的时候很可能会阻塞线程，导致页面假死。但 Web Worker 的出现，以另外一种方式给了我们多线程的能力，可以将复杂计算放在 worker 中进行，当计算完成后，以postMessage的形式将结果传回来。
 对于单个函数，因为 Web Worker 接受一个脚本的 url 作为参数，使用 URL.createObjectURL 方法，我们可以将一个函数的内容转换为 url，利用它创建一个 worker。
-
-
 var workerContent = `
 
  self.onmessage = function(evt){ 
      
-
 // ... 
-
 
 // 在这里进行复杂计算
 
-
  var result = complexFunc(); 
  
+// 将结果传回 
 
-// 将结果传回 self.postMessage(result); };` 
-
+self.postMessage(result); };` 
 
 // 得到 url 
 
-
 var blob = new Blob([workerContent]);
-
 
  var url = window.URL.createObjectURL(blob);
  
-
  // 创建 worker var worker = new Worker(url);
  
 
