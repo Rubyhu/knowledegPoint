@@ -315,41 +315,71 @@ window.addEventListener('scroll', debounce(handle, 1000));
 节流throttle代码（时间戳）：
 
 var throttle = function(func, delay) {
+
             var prev = Date.now();
+
             return function() {
+
                 var context = this;
+
                 var args = arguments;
+
                 var now = Date.now();
+
                 if (now - prev >= delay) {
+
                     func.apply(context, args);
+
                     prev = Date.now();
+
                 }
+
             }
+
         }
         function handle() {
+
             console.log(Math.random());
+
         }
+
         window.addEventListener('scroll', throttle(handle, 1000));
 
 
        节流throttle代码（定时器）：
 
  var throttle = function(func, delay) {
+
             var timer = null;
+
             return function() {
+
                 var context = this;
+
                 var args = arguments;
+
                 if (!timer) {
+
                     timer = setTimeout(function() {
+
                         func.apply(context, args);
+
                         timer = null;
+
                     }, delay);
+
                 }
+
             }
+
         }
+
         function handle() {
+
             console.log(Math.random());
+
         }
+        
         window.addEventListener('scroll', throttle(handle, 1000));
 
 区别： 函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而函数防抖只是在最后一次事件后才触发一次函数。 比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用节流技术来实现。
