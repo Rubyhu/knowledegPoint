@@ -44,207 +44,355 @@ align-self:auto | flex-start | flex-end | center | baseline | stretch(允许单�
 ##水平垂直居中
 
 <div class="box">
+
   	<h3>Flex实现水平垂直居中</h3>
+
   	<p>
+
   		flex-direction决定主轴的方向：row|row-reverse|column|column-reverse<br/>
+
   		justify-content决定主轴的对齐方式：flex-start|flex-end|center|space-between|space-around<br/>
+
   		align-items决定交叉轴的对齐方式：flex-start|flex-end|center|baseline|stretch
+
   	</p>
+
 </div>
 
 .box{
+
 		display: flex;
+
 		justify-content: center;
+
 		align-items: center;
+
 		border: 1px solid black;
+
 		width:500px;
+
 		height:500px;
 
 }
 
 ##用flex布局制作导航栏
+
 <ul>
+
 	<li>音乐</li>
+
 	<li>旅游</li>
+
 	<li>电影</li>
+
 	<li>综艺</li>
+
 </ul>
 
 ul{
+
 	display: flex;
+
 }
 
 li{
+
 	flex:1;
+
 	text-align: center;
+
 	line-height: 100px;
+
 	list-style: none;
+
 	background: green;
+
 	border-right: 1px solid grey;
+
 }
 
 ##图文并排的样式：左边是图片，右边是文字
 
 <div class="box">
+
   	<div class="left"></div>
+
   	<div class="right">
+
 		<p>第一行</p>
+
 		<p>说明1&nbsp;&nbsp;&nbsp;&nbsp;说明2</p>
+
 		<div><input type="button" value="确认"></div>
+
   	</div>
+
 </div>
+
 .box{
+
 		display: flex;
+
 		justify-content: space-between;
+
 		width: 350px;
+
 		height: 150px;
+
 		border: 1px solid grey;
+
 }
 .left{
+
 		width: 100px;
+
 		height: 100px;
+
 		background: grey;
+
 }
 .right{
+
 		width: 150px;
+
 		height: 100px;
+
 }
 
 ##固定百分比布局
 
 <div class="demo">
+
    <div class="item item1">1/4</div>
+
    <div class="item item2">1/4</div>
+
    <div class="item item3">1/4</div>
+
    <div class="item item4">1/4</div>
+
 </div>
+
 .demo{
- 	display: flex;             
+
+ 	display: flex;         
+
 }
+
 .item{
+
  	flex: 1;
+
  	background: green;
+
  	border-right:1px solid grey;
+
  	line-height: 100px;
+
 }
 
 ##某一个固定
 
 
 <div class="demo">
+
    <div class="item item1">auto</div>
+
    <div class="item item2">1/2</div>
+
    <div class="item item3">auto</div>
+
    <div class="item item4">auto</div>
+
 </div>
 
 .demo{
- 	 display: flex;             
+
+ 	 display: flex;       
+
 }
 .item{
+
  	flex: 1;
+
  	background: green;
+
  	border-right:1px solid grey;
+
  	line-height: 100px;
+
  	color: #fff;
+
  	text-align: center;
+
 }
+
 .item2{
+
     flex: 0 0 50%;
 }
 
 ##圣杯布局
 
 <div class="demo">
+
    	<div class="header">头部</div>
+
    	<div class="body">
+
      	<div class="left">left</div>
+
      	<div class="center">center</div>
+
      	<div class="right">right</div>
+
   	</div>
+
   	<div class="footer">底部</div>
+
 </div>
 
 
 .demo{
+
   	display: flex;
-	flex-direction: column;            
+
+	flex-direction: column; 
+
 }
+
 .demo div{
+
  	flex: 1;
+
 }
 .body{
+
  	display: flex;  
+
 } 
 .header, .footer{
+
 	 background: grey;
+
 	 line-height: 80px;
+
 	 text-align: center;
+
 }
+
 .left, .right{
+
 	 background: pink;
+
 	 line-height: 200px;
+
 	 text-align: center;
+
 }
 .header,.footer,.left,.right{
+
  	flex: 0 0 20%!important;
+
 }
 
 ##双飞翼布局（两端固定宽高，中间自适应的三栏布局）
 
 
 <div id="container">
+
   	<div id="left" class="column">#left</div>
+
     <div id="center" class="column">#center</div>
+
     <div id="right" class="column">#right</div>
+
 </div>
- body {
+
+    body {
+
         min-width: 550px;
-   	}
+
+   	 }
     #container{
+
         display: flex;
+
         justify-content: center;
+
         align-items: flex-start;
+
     }
+
     .column{
+
         height: 200px;
+
         color:white;
+
     }
     #center{
+
         flex-grow: 1;
+
         background-color: black;
+
     }
+
     #left{
+
         flex-basis: 200px;
+
         background-color: red;
+
     }
+
     #right{
+
         flex-basis: 200px;
+
         background-color: blue;
+
     }
 
 ##底部fooer固定在底部，但是不是fixed定位
 
 <div class="demo">
+
   	<div class="main">这是主要内容</div>
+
   	<div class="footer">这是底部</div>
+
 </div>
 
 
 .demo{
+
     display: flex;
+
    	flex-direction: column;
+
    	width: 300px;
+
    	height: 200px;
+
 }
+
 .main{
+
   	flex: 1;
+
   	background: pink;
+
 }
 .footer{
-   	width: 100%;
+
+  width: 100%;
+
  	height: 30px;
+
  	background: grey;
+   
 }
 
 
