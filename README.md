@@ -163,13 +163,13 @@ li{
 
  <div class="demo">
 
-   <div class="item item1">1/4</div>
+   <div class="item item1"> 1/4 </div>
 
-   <div class="item item2">1/4</div>
+   <div class="item item2"> 1/4 </div>
 
-   <div class="item item3">1/4</div>
+   <div class="item item3"> 1/4 </div>
 
-   <div class="item item4">1/4</div>
+   <div class="item item4"> 1/4 </div>
 
 </div>
 
@@ -193,16 +193,15 @@ li{
 
 ##某一个固定
 
-
 <div class="demo">
 
-   <div class="item item1">auto</div>
+   <div class="item item1"> auto</div>
 
-   <div class="item item2">1/2</div>
+   <div class="item item2"> 1/2</div>
 
-   <div class="item item3">auto</div>
+   <div class="item item3"> auto</div>
 
-   <div class="item item4">auto</div>
+   <div class="item item4"> auto</div>
 
 </div>
 
@@ -211,6 +210,7 @@ li{
  	 display: flex;       
 
 }
+
 .item{
 
  	flex: 1;
@@ -272,6 +272,7 @@ li{
  	display: flex;  
 
 } 
+
 .header, .footer{
 
 	 background: grey;
