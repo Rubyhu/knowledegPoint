@@ -161,7 +161,7 @@ li{
 
 ##固定百分比布局
 
-<div class="demo">
+ <div class="demo">
 
    <div class="item item1">1/4</div>
 
@@ -266,6 +266,7 @@ li{
  	flex: 1;
 
 }
+
 .body{
 
  	display: flex;  
@@ -290,6 +291,7 @@ li{
 	 text-align: center;
 
 }
+
 .header,.footer,.left,.right{
 
  	flex: 0 0 20%!important;
@@ -314,6 +316,7 @@ li{
         min-width: 550px;
 
    	 }
+
     #container{
 
         display: flex;
@@ -331,6 +334,7 @@ li{
         color:white;
 
     }
+
     #center{
 
         flex-grow: 1;
@@ -385,6 +389,7 @@ li{
   	background: pink;
 
 }
+
 .footer{
 
   width: 100%;
@@ -392,7 +397,7 @@ li{
  	height: 30px;
 
  	background: grey;
-   
+
 }
 
 
