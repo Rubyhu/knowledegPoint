@@ -1,4 +1,256 @@
 
+<h1>关于flex布局</h1>
+flex布局可以帮我们快速布局一些区块,实现你想要的效果,不用再去float,position之类的.我们在布局网页的时候很多时候都是一些特殊布局,flex就能帮我快速去布局,不需要
+去定位.<br/>
+任何一个盒子都可以指定为flex布局,但是要注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。
+<br/>
+.box{
+
+  display:flex||inline-flex;//inline-flex为行内元素设置弹性布局
+
+  flex-direction:row;
+
+}
+
+#容器上的属性：
+
+flex-direction:row | row-reverse | column | column-reverse;(属性决定主轴的方向（即项目的排列方向）。)
+
+flex-wrap:nowrap | wrap | wrap-reverse;(默认情况下，项目都排在一条线.如果一条轴线排不下，如何换行)
+
+flex-flow: <flex-direction> || <flex-wrap>;(flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap)
+
+justify-content:flex-start | flex-end | center | space-between | space-around;(定义了项目在主轴上的对齐方式)
+
+align-items: flex-start | flex-end | center | baseline | stretch;(定义项目在交叉轴上如何对齐)
+
+align-content:flex-start | flex-end | center | space-between | space-around | stretch;(属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用)
+#项目的属性
+
+order:<integer>(项目的排列顺序。数值越小，排列越靠前，默认为0)
+
+flex-grow:<number>(定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大)
+
+flex-shrink:<number>(定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小)
+
+flex-basis:<length> | auto;(在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。)
+
+flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ](flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。)
+
+align-self:auto | flex-start | flex-end | center | baseline | stretch(允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。)
+
+#布局
+
+##水平垂直居中
+
+<div class="box">
+  	<h3>Flex实现水平垂直居中</h3>
+  	<p>
+  		flex-direction决定主轴的方向：row|row-reverse|column|column-reverse<br/>
+  		justify-content决定主轴的对齐方式：flex-start|flex-end|center|space-between|space-around<br/>
+  		align-items决定交叉轴的对齐方式：flex-start|flex-end|center|baseline|stretch
+  	</p>
+</div>
+
+.box{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid black;
+		width:500px;
+		height:500px;
+
+}
+
+##用flex布局制作导航栏
+<ul>
+	<li>音乐</li>
+	<li>旅游</li>
+	<li>电影</li>
+	<li>综艺</li>
+</ul>
+
+ul{
+	display: flex;
+}
+
+li{
+	flex:1;
+	text-align: center;
+	line-height: 100px;
+	list-style: none;
+	background: green;
+	border-right: 1px solid grey;
+}
+
+##图文并排的样式：左边是图片，右边是文字
+
+<div class="box">
+  	<div class="left"></div>
+  	<div class="right">
+		<p>第一行</p>
+		<p>说明1&nbsp;&nbsp;&nbsp;&nbsp;说明2</p>
+		<div><input type="button" value="确认"></div>
+  	</div>
+</div>
+.box{
+		display: flex;
+		justify-content: space-between;
+		width: 350px;
+		height: 150px;
+		border: 1px solid grey;
+}
+.left{
+		width: 100px;
+		height: 100px;
+		background: grey;
+}
+.right{
+		width: 150px;
+		height: 100px;
+}
+
+##固定百分比布局
+
+<div class="demo">
+   <div class="item item1">1/4</div>
+   <div class="item item2">1/4</div>
+   <div class="item item3">1/4</div>
+   <div class="item item4">1/4</div>
+</div>
+.demo{
+ 	display: flex;             
+}
+.item{
+ 	flex: 1;
+ 	background: green;
+ 	border-right:1px solid grey;
+ 	line-height: 100px;
+}
+
+##某一个固定
+
+
+<div class="demo">
+   <div class="item item1">auto</div>
+   <div class="item item2">1/2</div>
+   <div class="item item3">auto</div>
+   <div class="item item4">auto</div>
+</div>
+
+.demo{
+ 	 display: flex;             
+}
+.item{
+ 	flex: 1;
+ 	background: green;
+ 	border-right:1px solid grey;
+ 	line-height: 100px;
+ 	color: #fff;
+ 	text-align: center;
+}
+.item2{
+    flex: 0 0 50%;
+}
+
+##圣杯布局
+
+<div class="demo">
+   	<div class="header">头部</div>
+   	<div class="body">
+     	<div class="left">left</div>
+     	<div class="center">center</div>
+     	<div class="right">right</div>
+  	</div>
+  	<div class="footer">底部</div>
+</div>
+
+
+.demo{
+  	display: flex;
+	flex-direction: column;            
+}
+.demo div{
+ 	flex: 1;
+}
+.body{
+ 	display: flex;  
+} 
+.header, .footer{
+	 background: grey;
+	 line-height: 80px;
+	 text-align: center;
+}
+.left, .right{
+	 background: pink;
+	 line-height: 200px;
+	 text-align: center;
+}
+.header,.footer,.left,.right{
+ 	flex: 0 0 20%!important;
+}
+
+##双飞翼布局（两端固定宽高，中间自适应的三栏布局）
+
+
+<div id="container">
+  	<div id="left" class="column">#left</div>
+    <div id="center" class="column">#center</div>
+    <div id="right" class="column">#right</div>
+</div>
+ body {
+        min-width: 550px;
+   	}
+    #container{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .column{
+        height: 200px;
+        color:white;
+    }
+    #center{
+        flex-grow: 1;
+        background-color: black;
+    }
+    #left{
+        flex-basis: 200px;
+        background-color: red;
+    }
+    #right{
+        flex-basis: 200px;
+        background-color: blue;
+    }
+
+##底部fooer固定在底部，但是不是fixed定位
+
+<div class="demo">
+  	<div class="main">这是主要内容</div>
+  	<div class="footer">这是底部</div>
+</div>
+
+
+.demo{
+    display: flex;
+   	flex-direction: column;
+   	width: 300px;
+   	height: 200px;
+}
+.main{
+  	flex: 1;
+  	background: pink;
+}
+.footer{
+   	width: 100%;
+ 	height: 30px;
+ 	background: grey;
+}
+
+
+参考http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+===============================================================================================================================================
+<h1>性能优化</h1>
 今年因为工作的原因，接触到了很多关于前端性能优化的知识。乘此机会在前人的基础上做了些总结与归纳。。。。
 
 #输入网址后
@@ -383,6 +635,8 @@ var throttle = function(func, delay) {
         window.addEventListener('scroll', throttle(handle, 1000));
 
 区别： 函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而函数防抖只是在最后一次事件后才触发一次函数。 比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用节流技术来实现。
+==========================================================================================================================
+           
 
 
 
